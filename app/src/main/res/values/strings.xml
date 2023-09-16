@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Ifood</string>
+    <string name="texto_entrar">Entrar</string>
+
+
+    <string name="erro_nome_cadastro">Preencha o nome</string>
+    <string name="erro_email_cadastro">Preencha um e-mail válido</string>
+    <string name="erro_senha_cadastro">Preencha uma senha com no mínimo 06 caracteres</string>
+    <string name="erro_telefone_cadastro">Preencha um telefone válido</string>
+
+    <string name="texto_carregando">Carregando...</string>
+
+    <string name="item_menu_navegacao_inferior_home">Home</string>
+    <string name="item_menu_navegacao_inferior_busca">Busca</string>
+    <string name="item_menu_navegacao_inferior_pedidos">Pedidos</string>
+    <string name="item_menu_navegacao_inferior_perfil">Perfil</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

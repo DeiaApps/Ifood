@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="BotaoEnderecoEntrega"
+        parent="Widget.AppCompat.Button.Borderless">
+        <item name="textAllCaps">false</item>
+        <item name="android:textColor">@color/preto</item>
+        <item name="android:textSize">@dimen/titulo_barra_navegacao</item>
+    </style>
+
+    <style name="ImagemArredondada">
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="ImagemCantosArredondados">
+        <item name="cornerSize">15%</item>
+    </style>
+
+    <style name="titulo1">
+        <item name="android:textSize">@dimen/tamanho_texto_titulo1</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="titulo2">
+        <item name="android:textSize">@dimen/tamanho_texto_titulo2</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="titulo3">
+        <item name="android:textSize">@dimen/tamanho_texto_titulo3</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="texto1">
+        <item name="android:textSize">@dimen/tamanho_texto1</item>
+    </style>
+
+    <style name="Widget.MaterialComponents.Chip.chipSelecao"
+        parent="@style/Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/chip_fundo_selecao</item>
+        <item name="chipStrokeColor">@color/cinza</item>
+        <item name="chipStrokeWidth">@dimen/borda_chip</item>
+        <item name="chipIconVisible">true</item>
+        <item name="chipIconEnabled">true</item>
+    </style>
+
+</resources>

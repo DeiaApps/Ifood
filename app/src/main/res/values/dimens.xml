@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="titulo_barra_navegacao">14dp</dimen>
+    <dimen name="tamanho_texto_titulo1">18dp</dimen>
+    <dimen name="tamanho_texto_titulo2">16dp</dimen>
+    <dimen name="tamanho_texto_titulo3">14dp</dimen>
+
+    <dimen name="tamanho_texto1">16sp</dimen>
+    <dimen name="tamanho_texto2">14dp</dimen>
+
+    <dimen name="espacamento_grande">24dp</dimen>
+    <dimen name="espacamento_padrao">16dp</dimen>
+    <dimen name="espacamento_pequeno">8dp</dimen>
+
+    <dimen name="borda_chip">2dp</dimen>
+
+</resources>
