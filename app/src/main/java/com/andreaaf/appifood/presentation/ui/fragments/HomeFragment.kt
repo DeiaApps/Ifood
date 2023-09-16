@@ -246,7 +246,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun inicializarRecyclerViewLojas() {
-        lojasAdapter = LojasAdapter(TipoLayout.LOJAS) {
+        lojasAdapter = LojasAdapter(TipoLayout.VERTICAL) {
             findNavController().navigate(R.id.lojaFragment)
         }
         lojasAdapter.adicionarLista(listaLojas)
@@ -255,7 +255,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun inicializarRecyclerViewUltimasLojas() {
-        ultimasLojasAdapter = LojasAdapter(TipoLayout.ULTIMAS_LOJAS) {
+        ultimasLojasAdapter = LojasAdapter(TipoLayout.HORIZONTAL) {
             findNavController().navigate(R.id.lojaFragment)
         }
         ultimasLojasAdapter.adicionarLista(listaLojas)

@@ -8,6 +8,12 @@
     <dimen name="tamanho_texto1">16sp</dimen>
     <dimen name="tamanho_texto2">14dp</dimen>
 
+    <dimen name="texto_extra_grande">32dp</dimen>
+    <dimen name="texto_grande">24dp</dimen>
+    <dimen name="texto_medio">18dp</dimen>
+    <dimen name="texto_pequeno">14dp</dimen>
+    <dimen name="texto_extra_pequeno">12dp</dimen>
+
     <dimen name="espacamento_grande">24dp</dimen>
     <dimen name="espacamento_padrao">16dp</dimen>
     <dimen name="espacamento_pequeno">8dp</dimen>

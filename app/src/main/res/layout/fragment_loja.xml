@@ -7,13 +7,13 @@
     tools:context=".presentation.ui.fragments.LojaFragment">
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/imageView4"
         android:layout_width="0dp"
         android:layout_height="120dp"
         android:scaleType="centerCrop"
         android:src="@drawable/capa"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,11 +28,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5">
+        app:layout_constraintTop_toBottomOf="@+id/imageView4">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/espacamento_padrao"
+            android:layout_marginBottom="@dimen/espacamento_padrao"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -42,15 +44,15 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView6"
+                    android:id="@+id/textView7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Outback SteakHouse - Bourbon"
-                    android:textSize="@dimen/tamanho_texto1"
+                    android:textSize="@dimen/tamanho_texto_titulo1"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/textView8"
+                    android:id="@+id/textView11"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Lanches - 1KM" />
@@ -64,6 +66,28 @@
                 android:src="@drawable/logo_mc_donalds"
                 app:shapeAppearanceOverlay="@style/ImagemArredondada" />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Destaque"
+            android:textSize="@dimen/tamanho_texto_titulo1"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvProdutosDestaque"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:itemCount="1"
+            tools:listitem="@layout/item_rv_produto_destaque" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvProdutos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/item_rv_produtos" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

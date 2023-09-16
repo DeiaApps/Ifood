@@ -59,7 +59,7 @@ class LojasAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
-        if (tipoLayout == TipoLayout.ULTIMAS_LOJAS) {
+        if (tipoLayout == TipoLayout.HORIZONTAL) {
             val inflater = LayoutInflater.from(parent.context)
             val itemViewUltimasLojas = ItemRvUltimasLojasBinding.inflate(
                 inflater, parent, false
