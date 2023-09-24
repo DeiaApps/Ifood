@@ -35,6 +35,18 @@
         <item name="android:textSize">@dimen/tamanho_texto1</item>
     </style>
 
+    <style name="texto_grande">
+        <item name="android:textSize">@dimen/texto_grande</item>
+    </style>
+
+    <style name="texto_medio">
+        <item name="android:textSize">@dimen/texto_medio</item>
+    </style>
+
+    <style name="texto_pequeno">
+        <item name="android:textSize">@dimen/texto_pequeno</item>
+    </style>
+
     <style name="Widget.MaterialComponents.Chip.chipSelecao"
         parent="@style/Widget.MaterialComponents.Chip.Choice">
         <item name="chipBackgroundColor">@color/chip_fundo_selecao</item>

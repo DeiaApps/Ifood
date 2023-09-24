@@ -78,7 +78,7 @@ class LojaFragment : Fragment() {
     private fun inicializarRecyclerViewProdutos() {
 
         produtosAdapter = ProdutosAdapter( TipoLayout.VERTICAL ){
-            findNavController().navigate(R.id.lojaFragment)
+            findNavController().navigate(R.id.produtoFragment)
         }
         produtosAdapter.adicionarLista( listaProdutos )
         binding.rvProdutos.adapter = produtosAdapter
@@ -89,7 +89,7 @@ class LojaFragment : Fragment() {
     private fun inicializarRecyclerViewProdutosDestaque() {
 
         produtosDestaqueAdapter = ProdutosAdapter( TipoLayout.HORIZONTAL ){
-            findNavController().navigate(R.id.lojaFragment)
+            findNavController().navigate(R.id.produtoFragment)
         }
         produtosDestaqueAdapter.adicionarLista( listaProdutos )
         binding.rvProdutosDestaque.adapter = produtosDestaqueAdapter
