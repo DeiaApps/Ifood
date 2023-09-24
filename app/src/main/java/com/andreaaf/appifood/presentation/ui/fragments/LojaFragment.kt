@@ -62,11 +62,17 @@ class LojaFragment : Fragment() {
             inflater, container, false
         )
 
+        inicializarToolbar()
+
         inicializarRecyclerViewProdutosDestaque()
         inicializarRecyclerViewProdutos()
 
         return binding.root
 
+    }
+
+    private fun inicializarToolbar() {
+        //binding.toolbar.title = "Loja"
     }
 
     private fun inicializarRecyclerViewProdutos() {
