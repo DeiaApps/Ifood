@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="titulo_barra_navegacao">14dp</dimen>
-    <dimen name="tamanho_texto_titulo1">18dp</dimen>
+    <dimen name="tamanho_texto_titulo1">18sp</dimen>
     <dimen name="tamanho_texto_titulo2">16dp</dimen>
-    <dimen name="tamanho_texto_titulo3">14dp</dimen>
+    <dimen name="tamanho_texto_titulo3">14sp</dimen>
 
     <dimen name="tamanho_texto1">16sp</dimen>
     <dimen name="tamanho_texto2">14dp</dimen>

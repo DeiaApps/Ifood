@@ -3,10 +3,17 @@ package com.andreaaf.appifood.presentation.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.andreaaf.appifood.R
@@ -14,6 +21,7 @@ import com.andreaaf.appifood.databinding.FragmentLojaBinding
 import com.andreaaf.appifood.domain.model.Produto
 import com.andreaaf.appifood.helper.TipoLayout
 import com.andreaaf.appifood.presentation.ui.adapters.ProdutosAdapter
+import java.lang.Math.abs
 
 class LojaFragment : Fragment() {
 
@@ -72,7 +80,55 @@ class LojaFragment : Fragment() {
     }
 
     private fun inicializarToolbar() {
-        //binding.toolbar.title = "Loja"
+        with(binding){
+            collapsedToolbar
+
+            btnNavLojaVoltar.setOnClickListener {
+                findNavController().navigate(R.id.homeFragment)
+            }
+
+            val appCompatActivity = (activity as AppCompatActivity)
+
+            appCompatActivity.setSupportActionBar( collapsedToolbar )
+
+            appCompatActivity.addMenuProvider(
+                object : MenuProvider {
+                    override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                        menuInflater.inflate(R.menu.loja_pesquisa, menu)
+                    }
+
+                    override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                        return true
+                    }
+
+                },
+                viewLifecycleOwner
+            )
+
+            //Configuração AppBar
+            /*appbar.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
+                println("AppBarChange : $verticalOffset")
+                //0 - 357
+                val navegacaoVertical = abs(verticalOffset)
+                if( navegacaoVertical >= appBarLayout.totalScrollRange ){//Colapsado/fechado
+                    textNavLojaTitulo.text = "Outback"
+                }else if( navegacaoVertical == 0 ){//Expandido
+                    textNavLojaTitulo.text = ""
+                }else{//Scrool está acontecendo
+
+                }
+            }*/
+
+        }
+        /*val toolbar = binding.collapsedToolbar
+        val navControler = findNavController()*/
+
+        /*
+        comportamento padrão, 2 exemplos
+        navControler.currentDestination?.label = "" //ex.: 2
+        toolbar.setupWithNavController(navControler)
+        ex.:1 NavigationUI.setupWithNavController(toolbar, navControler)*/
+
     }
 
     private fun inicializarRecyclerViewProdutos() {

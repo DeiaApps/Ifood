@@ -1,6 +1,6 @@
 package com.andreaaf.appifood.presentation.viewmodel
 
-import android.util.Log
+
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,7 +10,6 @@ import com.andreaaf.appifood.domain.usecase.AutenticacaoUseCase
 import com.andreaaf.appifood.domain.usecase.ResultadoAutenticacao
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

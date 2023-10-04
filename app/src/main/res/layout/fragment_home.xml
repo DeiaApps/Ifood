@@ -30,7 +30,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/tbHome"
         app:layout_constraintEnd_toEndOf="@+id/tbHome"
         app:layout_constraintStart_toStartOf="@+id/tbHome"
-        app:layout_constraintTop_toTopOf="@+id/tbHome" />
+        app:layout_constraintTop_toTopOf="@+id/tbHome"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
