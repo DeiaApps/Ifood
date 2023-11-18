@@ -1,0 +1,102 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'com.google.gms.google-services'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+}
+
+android {
+    namespace 'com.andreaaf.loja'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.andreaaf.loja"
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding = true
+    }
+}
+
+dependencies {
+    def lifecycle_version = "2.5.1"
+    def hilt_version = "2.44"
+    def easyvalidation_version = "1.0.4"
+    def room_version = "2.4.1"
+    def nav_version = "2.5.3"
+
+    //Dependências firebase
+    implementation platform('com.google.firebase:firebase-bom:31.1.1')
+    implementation 'com.google.firebase:firebase-analytics-ktx'//Analytics
+    implementation 'com.google.firebase:firebase-auth-ktx'//Autenticação
+    implementation 'com.google.firebase:firebase-firestore-ktx'//Banco de dados
+    implementation 'com.google.firebase:firebase-storage-ktx'//Armazenamento
+
+    //Picasso
+    implementation 'com.squareup.picasso:picasso:2.8'
+
+    //Dependências lifecycle
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    // LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    // Lifecycles only (without ViewModel or LiveData)
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+
+    //Dependências Hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
+
+    //Dependências KTX (by viewModels)
+    implementation "androidx.fragment:fragment-ktx:1.5.5"
+
+    //Dependências lib máscara de campos
+    implementation 'io.github.vicmikhailau:MaskedEditText:4.0.7'
+
+    //Dependências lib de validação de campos
+    implementation "com.wajahatkarim:easyvalidation-core:$easyvalidation_version"
+
+    //Room
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+    //NavigationComponent (Jetpack) - Kotlin
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+
+    //Recursos para trabalhar com RecyclerView
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.5.1'
+
+    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
+}

@@ -25,6 +25,7 @@ class NavegacaoAbasActivity : AppCompatActivity() {
         inicializaNavegacaoAbas()
     }
 
+
     private fun inicializaNavegacaoAbas() {
         val tabLayout = binding.tabLayoutNavegacao
         val viewPager = binding.viewPagerNavegacao
@@ -38,10 +39,15 @@ class NavegacaoAbasActivity : AppCompatActivity() {
             MinhaAba("Pedidos", PedidosFragment()),
             MinhaAba("Perfil", PerfilFragment()),
         )*/
+
         val listaAbas = listOf(
-            "Iníco",
+            AbaCustomizada("Inicio", HomeFragment()),
+            AbaCustomizada( "Busca", BuscaFragment()),
+            AbaCustomizada( "Pedidos", PedidosFragment()),
+            AbaCustomizada( "Perfil", PerfilFragment())
+            /*"Iníco",
             "Busca",
-            "Pedidos",
+            "Pedidos"*/,
             /*"Perfil1",
             "Perfil2",
             "Perfil3",*/
@@ -50,19 +56,20 @@ class NavegacaoAbasActivity : AppCompatActivity() {
             listaAbas, supportFragmentManager, lifecycle
         )
         TabLayoutMediator(tabLayout, viewPager){ aba, posicao ->
-            aba.text = listaAbas[posicao]
+            val abaCustomizada = listaAbas[posicao]
+            aba.text = abaCustomizada.titulo
+            //aba.text = listaAbas[posicao]
         }.attach()
     }
 }
-
-data class MinhaAba(
-    val aba: String,
+data class AbaCustomizada(
+    val titulo: String,
     val fragment: Fragment
 )
 
 class ViewPagerAdapter(
     //private val listaAbas: List<MinhaAba>,
-    private val listaAbas: List<String>,
+    private val listaAbas: List<AbaCustomizada>,
     fragmentManager: FragmentManager,
     lifecycle: Lifecycle
 ) : FragmentStateAdapter(fragmentManager, lifecycle){
@@ -75,14 +82,16 @@ class ViewPagerAdapter(
         /* Inico(0) -> HomeFragment*/
         /*val aba = listaAbas[position]
         return aba.fragment*/
-        when( position ){ //cria cfme necessário
-            1 -> BuscaFragment()
-            2 -> PedidosFragment()
+        /*when( position ){ //cria cfme necessário
+            1 -> return BuscaFragment()
+            2 -> return PedidosFragment()*/
+        val abaCustomizada = listaAbas[position]
            /* 3 -> PerfilFragment()
             4 -> PerfilFragment()
             5 -> PerfilFragment()*/
-        }
-        return HomeFragment()
+       // }
+      //  return HomeFragment()
+        return abaCustomizada.fragment
     }
 
 }
