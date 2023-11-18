@@ -18,3 +18,5 @@ dependencyResolutionManagement {
 rootProject.name = "App Ifood"
 include ':cliente'
 include ':loja'
+include ':domain'
+include ':core'
