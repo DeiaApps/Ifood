@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">loja</string>
+    <string name="erro_nome_cadastro">Preencha o nome</string>
+    <string name="erro_email_cadastro">Preencha um e-mail válido</string>
+    <string name="erro_senha_cadastro">Preencha uma senha com no mínimo 06 caracteres</string>
+    <string name="erro_telefone_cadastro">Preencha um telefone válido</string>
 </resources>

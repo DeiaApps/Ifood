@@ -8,7 +8,7 @@ plugins {
 
 android {
     namespace 'com.andreaaf.loja'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.andreaaf.loja"

@@ -1,6 +1,6 @@
-package com.andreaaf.domain.usecase
+package com.andreaaf.loja.data.remote.firebase.repositoy
 
-import com.andreaaf.appifood.domain.model.Usuario
+import com.andreaaf.loja.domain.model.Usuario
 
 interface IAutenticacaoRepository {
 

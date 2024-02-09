@@ -1,6 +1,7 @@
 package com.andreaaf.appifood.di
 
 import com.andreaaf.appifood.data.remote.firebase.repository.AutenticacaoRepositoryImpl
+import com.andreaaf.appifood.data.remote.firebase.repository.IAutenticacaoRepository
 import com.andreaaf.appifood.domain.usecase.AutenticacaoUseCase
 import com.google.firebase.auth.FirebaseAuth
 import dagger.Module
@@ -14,7 +15,7 @@ object AppModule {//JAVA: Utiliza uma classe normal
 
     @Provides
     fun provideAutenticacaoUseCase(
-        autenticacaoRepositoryImpl: AutenticacaoRepositoryImpl
+        autenticacaoRepositoryImpl: IAutenticacaoRepository
     ): AutenticacaoUseCase {
         return AutenticacaoUseCase( autenticacaoRepositoryImpl )
     }

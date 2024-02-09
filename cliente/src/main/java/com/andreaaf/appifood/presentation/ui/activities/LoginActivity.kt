@@ -7,9 +7,9 @@ import androidx.activity.viewModels
 import com.andreaaf.appifood.R
 import com.andreaaf.appifood.databinding.ActivityLoginBinding
 import com.andreaaf.appifood.domain.model.Usuario
-import com.andreaaf.appifood.helper.AlertaMensagem
-import com.andreaaf.appifood.helper.esconderTeclado
-import com.andreaaf.appifood.helper.exibirMensagem
+import com.andreaaf.core.AlertaMensagem
+import com.andreaaf.core.esconderTeclado
+import com.andreaaf.core.exibirMensagem
 import com.andreaaf.appifood.presentation.viewmodel.AutenticacaoViewModel
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,7 +26,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        FirebaseAuth.getInstance().signOut()
+       // FirebaseAuth.getInstance().signOut()
         inicializar()
     }
 
@@ -78,8 +78,8 @@ class LoginActivity : AppCompatActivity() {
                 exibirMensagem("Sucesso ao logar usuário")
             }else{
                 limparCampos()
-               /* exibirMensagem("E-mail e senha inválido, preencha novamente!")
-                                  //padrão combinação email e senha*/
+                exibirMensagem("E-mail e senha inválido, preencha novamente!")
+                                  //padrão combinação email e senha
             }
         }
     }

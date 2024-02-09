@@ -12,8 +12,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI
-import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.andreaaf.appifood.R
@@ -21,7 +19,6 @@ import com.andreaaf.appifood.databinding.FragmentLojaBinding
 import com.andreaaf.appifood.domain.model.Produto
 import com.andreaaf.appifood.helper.TipoLayout
 import com.andreaaf.appifood.presentation.ui.adapters.ProdutosAdapter
-import java.lang.Math.abs
 
 class LojaFragment : Fragment() {
 

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/item_dados_loja"
+        android:title="Dados Loja" />
+    <item
+        android:id="@+id/item_taxa_tempo"
+        android:title="Taxa &amp; Tempo" />
+    <item
+        android:id="@+id/item_cardapio"
+        android:title="Cardápio" />
+    <item
+        android:id="@+id/item_sair"
+        android:title="Sair" />
+
+</menu>

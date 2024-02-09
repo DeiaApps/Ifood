@@ -2,13 +2,11 @@ package com.andreaaf.appifood.presentation.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.andreaaf.appifood.databinding.ItemRvLojasBinding
 import com.andreaaf.appifood.databinding.ItemRvUltimasLojasBinding
 import com.andreaaf.appifood.domain.model.Loja
-import com.andreaaf.appifood.helper.Constantes
 import com.andreaaf.appifood.helper.TipoLayout
 import com.squareup.picasso.Picasso
 

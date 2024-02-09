@@ -83,7 +83,8 @@ class AutenticacaoViewModel @Inject constructor(
                 //delay(13000)
                 println("retorno logar: $retorno")
                 // _carregando.value = false //encerra carregamento
-                _carregando.postValue(false) //encerra carregamento
+               // _carregando.postValue(false) //encerra carregamento
+                _carregando.value = false
                 //  _sucesso.postValue(true)
                 _sucesso.postValue(retorno)
             }
@@ -108,7 +109,8 @@ class AutenticacaoViewModel @Inject constructor(
                 val retorno = autenticacaoUseCase.cadastrarUsuario(usuario)
                 //delay(3000)
                 // _carregando.value = false //encerra carregamento
-                _carregando.postValue(false) //encerra carregamento
+                //_carregando.postValue(false) //encerra carregamento
+                _carregando.value = false
                 _sucesso.postValue(retorno)
                 // _sucessoCadastro.postValue(true)
                 // _sucessoCadastro.postValue(retorno)

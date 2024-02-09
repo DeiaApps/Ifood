@@ -17,7 +17,6 @@ fun View.esconderTeclado(){
 }
 
 fun View.exibirTecladoEFoco(){
-
     if( requestFocus() ){
         val inputMethodManager =
             context.getSystemService( Context.INPUT_METHOD_SERVICE) as InputMethodManager

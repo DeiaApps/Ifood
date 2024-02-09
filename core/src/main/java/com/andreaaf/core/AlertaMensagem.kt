@@ -1,7 +1,8 @@
 package com.andreaaf.core
 
-
 import android.app.Activity
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 
 class AlertaMensagem(
@@ -10,7 +11,7 @@ class AlertaMensagem(
     var alertDialog: AlertDialog? = null
 
     //Converter xml para view
-    val carregandoView = activity.layoutInflater.inflate(
+    val carregandoView: View = activity.layoutInflater.inflate(
         R.layout.layout_carregando, null
     )
 
@@ -21,12 +22,15 @@ class AlertaMensagem(
             .setView( carregandoView )
             .setCancelable(false)
 
-
         alertDialog = alertBuider.create()
         alertDialog?.show()
     }
 
     fun fechar(){
+        alertDialog?.setOnDismissListener {
+            val viewGroup = carregandoView.parent as ViewGroup
+            viewGroup.removeView( carregandoView )
+        }
         alertDialog?.dismiss()
     }
 }

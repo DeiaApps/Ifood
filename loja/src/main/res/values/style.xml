@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ImagemArredondada">
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="ImagemCantosArredondados">
+        <item name="cornerSize">10%</item>
+        <item name="backgroundColor">@color/cinza</item>
+    </style>
+
+    <style name="titulo1">
+        <item name="android:textSize">@dimen/tamanho_texto_titulo1</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="titulo2">
+        <item name="android:textSize">@dimen/tamanho_texto_titulo2</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="titulo3">
+        <item name="android:textSize">@dimen/tamanho_texto_titulo3</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="texto1">
+        <item name="android:textSize">@dimen/tamanho_texto1</item>
+    </style>
+
+    <style name="texto_grande">
+        <item name="android:textSize">@dimen/texto_grande</item>
+    </style>
+
+    <style name="texto_medio">
+        <item name="android:textSize">@dimen/texto_medio</item>
+    </style>
+
+    <style name="texto_pequeno">
+        <item name="android:textSize">@dimen/texto_pequeno</item>
+    </style>
+
+</resources>

@@ -4,12 +4,17 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import com.andreaaf.loja.domain.model.Usuario
 import com.andreaaf.core.AlertaMensagem
 import com.andreaaf.core.esconderTeclado
 import com.andreaaf.core.exibirMensagem
 import com.andreaaf.loja.databinding.ActivityLoginBinding
 import com.andreaaf.loja.presentation.ui.viewmodel.AutenticacaoViewModel
+import com.google.firebase.auth.FirebaseAuth
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
     private val binding by lazy{ActivityLoginBinding.inflate( layoutInflater ) }
@@ -20,18 +25,26 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        //FirebaseAuth.getInstance().signOut()
         inicializar()
     }
 
+    override fun onStart() {
+        super.onStart()
+        //TODO problema de usuário logado
+        autenticacaoViewModel.usuarioEstaLogado()
+    }
+
+
+
     private fun inicializar() {
-        //ESCONDE a barra de navegação   actionBar supportActionBar?.hide()
         supportActionBar?.hide()
 
-        //verificar usuário logado
-        //autenticacaoViewModel.usuarioEstaLogado()
+        //Verifica usuario logado
+        autenticacaoViewModel.usuarioEstaLogado()
 
         inicializarEventoClique()
-       // inicializarObservables()
+        inicializarObservables()
     }
     private fun inicializarObservables() {
 
@@ -52,16 +65,15 @@ class LoginActivity : AppCompatActivity() {
                 alertaMensagem?.fechar()
             }
         }
-        //22/08/23
         autenticacaoViewModel
             .sucessoUsuarioEstaLogado
             .observe(this){ sucessoUsuarioEstaLogado ->
                 if( sucessoUsuarioEstaLogado ){
-                    navegarParaTelaPrincipal()
-                    exibirMensagem("SUCESSO LOGIN")
+                    navegarParaTelaPrincipal() }
+             /*       exibirMensagem("SUCESSO LOGIN")
                 }else {
                     exibirMensagem("ERRO LOGIN")
-                }
+                }   NÃO PRECISA DAS MSG POIS QDO LOGA VAI APRA OUTRA TELA*/
             }
 
         autenticacaoViewModel.sucesso.observe(this){ sucessoLogin->
@@ -70,8 +82,7 @@ class LoginActivity : AppCompatActivity() {
                 exibirMensagem("Sucesso ao logar usuário")
             }else{
                 limparCampos()
-                /* exibirMensagem("E-mail e senha inválido, preencha novamente!")
-                                   //padrão combinação email e senha*/
+                exibirMensagem("E-mail e senha inválido, preencha novamente!")
             }
         }
     }
@@ -87,7 +98,6 @@ class LoginActivity : AppCompatActivity() {
         )
         finish()
     }
-
 
     private fun inicializarEventoClique() {
         with(binding){
@@ -105,12 +115,12 @@ class LoginActivity : AppCompatActivity() {
                 editLoginEmail.clearFocus()
                 editLoginSenha.clearFocus()
 
-                /*autenticacaoViewModel.logarUsuario(
+                autenticacaoViewModel.logarUsuario(
                     Usuario(
                         email = editLoginEmail.text.toString(),
                         senha = editLoginSenha.text.toString()
                     )
-                )*/
+                )
 
             }
         }

@@ -7,9 +7,9 @@ import androidx.activity.viewModels
 import com.andreaaf.appifood.R
 import com.andreaaf.appifood.databinding.ActivityCadastroBinding
 import com.andreaaf.appifood.domain.model.Usuario
-import com.andreaaf.appifood.helper.AlertaMensagem
-import com.andreaaf.appifood.helper.esconderTeclado
-import com.andreaaf.appifood.helper.exibirMensagem
+import com.andreaaf.core.AlertaMensagem
+import com.andreaaf.core.esconderTeclado
+import com.andreaaf.core.exibirMensagem
 import com.andreaaf.appifood.presentation.viewmodel.AutenticacaoViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -57,7 +57,7 @@ class CadastroActivity : AppCompatActivity() {
     }
 
     private fun inicializarToolbar() {
-        val toolbar = binding.includeToolbar.materialToolbarPrincipal
+        val toolbar = binding.includeToolbar.materialToolbarPrincipalCliente
         setSupportActionBar( toolbar )
 
         supportActionBar?.apply {

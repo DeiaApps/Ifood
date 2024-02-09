@@ -1,8 +1,7 @@
-package com.andreaaf.appifood.domain.usecase
+package com.andreaaf.loja.domain.usecase
 
-
-import com.andreaaf.appifood.domain.model.Usuario
-import com.andreaaf.domain.usecase.IAutenticacaoRepository
+import com.andreaaf.loja.domain.model.Usuario
+import com.andreaaf.loja.data.remote.firebase.repositoy.IAutenticacaoRepository
 import com.wajahatkarim3.easyvalidation.core.view_ktx.nonEmpty
 import com.wajahatkarim3.easyvalidation.core.view_ktx.validEmail
 import com.wajahatkarim3.easyvalidation.core.view_ktx.validator
@@ -11,19 +10,7 @@ import javax.inject.Inject
 class AutenticacaoUseCase @Inject constructor(
     private val iAutenticacaoRepository: IAutenticacaoRepository
 ){
-
-    /*
-    VERDADE -> se não estiver vazio
-    */
-                                        //retorna a validação e viewmodel só recebe
     fun validarCadastroUsuario(usuario: Usuario ) : ResultadoAutenticacao {
-    //fun validarUsuario( usuario: Usuario ) : ResultadoAutenticacao {
-        //Validação realmente acontece aqui
-
-       /* usuario.nome.validator()//valida todos os campos de 1X
-            .nonEmpty()
-            .minLength(6)
-            .check()*/
 
         //"andrea"-> true ""-> false
         val resultadoAutenticacao = ResultadoAutenticacao()
@@ -48,10 +35,8 @@ class AutenticacaoUseCase @Inject constructor(
 
     }
 
-    fun validarLoginUsuario( usuario: Usuario ) : ResultadoAutenticacao{
-
+    fun validarLoginUsuario( usuario: Usuario ) : ResultadoAutenticacao {
         val resultadoAutenticacao = ResultadoAutenticacao()
-
         if ( !usuario.email.validEmail())
             resultadoAutenticacao.emailInvalido = true//Deu erro, e-mail inválido
 
@@ -59,9 +44,6 @@ class AutenticacaoUseCase @Inject constructor(
             .nonEmpty()
             .minLength(6)
             .check()
-        /*Log.i("loginUsuario", "dados: ${usuario.email} - ${usuario.senha}")
-       Log.i("loginUsuario", "erro: ${senha.toString()}")*/
-
         if ( !senha )
             resultadoAutenticacao.senhaInvalido = true
 
@@ -76,9 +58,6 @@ class AutenticacaoUseCase @Inject constructor(
             e.printStackTrace()
             false
         }
-
-        /*val resultado = iAutenticacaoRepository.cadastrarUsuario( usuario )
-        return true*/
     }
 
     suspend fun logarUsuario(usuario: Usuario): Boolean {
