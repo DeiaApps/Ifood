@@ -49,13 +49,13 @@ class LojaUseCase@Inject constructor(
             .validUrl()
             .check()
 
-        if( nome )          return false
-        if( razaoSocial )   return false
-        if( cnpj )          return false
-        if( categoria )     return false
-        if( especialidade ) return false
-        if( imagemPerfil )  return true
-        if( imagemCapa )    return true
+        if( !nome )          return false
+        if( !razaoSocial )   return false
+        if( !cnpj )          return false
+        if( !categoria )     return false
+        if( !especialidade ) return false
+        if( !imagemPerfil )  return false
+        if( !imagemCapa )    return false
 
         return true
 
@@ -63,12 +63,10 @@ class LojaUseCase@Inject constructor(
 
     suspend fun cadastrarLoja( loja: Loja, uri: Uri ) : Boolean {
         return try {
-            iLojaRepository.cadastrar( loja, uri )
-        }catch (e: Exception){
+            iLojaRepository.cadastrar(loja, uri)
+        } catch (e: Exception) {
             e.printStackTrace()
             false
         }
     }
-
-
 }

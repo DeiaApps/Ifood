@@ -2,6 +2,7 @@ package com.andreaaf.loja.data.remote.firebase.repositoy
 
 import android.net.Uri
 import com.andreaaf.appifood.domain.model.Loja
+import com.andreaaf.loja.utils.FirebaseStorageConstants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -31,12 +32,12 @@ class LojaRepositoryImpl @Inject constructor(
             val nomeFoto = UUID.randomUUID().toString()
             if ( idUsuarioLogado != null ){
                 storage
-                    .getReference("perfil")
+                    .getReference(FirebaseStorageConstants.PASTA_PERFIL)
                     .child(idUsuarioLogado)
                     .child( nomeFoto )
                     .putFile( uri )
                     //.downloadUrl
-                    .addOnSuccessListener {uriImagem ->
+                    .addOnSuccessListener {uriImagem -> //task ->
 
                     }
             }

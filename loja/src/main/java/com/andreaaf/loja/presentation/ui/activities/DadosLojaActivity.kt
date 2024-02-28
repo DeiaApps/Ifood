@@ -1,11 +1,14 @@
 package com.andreaaf.loja.presentation.ui.activities
 
 import android.content.Intent
+import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.net.wifi.WifiManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ArrayAdapter
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -13,6 +16,7 @@ import androidx.core.content.ContextCompat
 import com.andreaaf.appifood.domain.model.Loja
 import com.andreaaf.core.esconderTeclado
 import com.andreaaf.core.exibirMensagem
+import com.andreaaf.loja.broadcasts.ConexaoWifiReceiver
 import com.andreaaf.loja.databinding.ActivityDadosLojaBinding
 import com.andreaaf.loja.presentation.ui.viewmodel.LojaViewModel
 import com.google.firebase.auth.FirebaseAuth
@@ -39,10 +43,12 @@ class DadosLojaActivity : AppCompatActivity() {
     private var uriImagemSelecionada: Uri? = null
     private var temPermissaoGaleria = false
     private var temPermissaoGaleriaCompat = false
+    private lateinit var conexaoWifiReceiver: ConexaoWifiReceiver
 
     private val abrirGaleria = registerForActivityResult(
         ActivityResultContracts.GetContent()
     ) { uri ->
+       // exibirMensagem( "imagem: $uriImagemSelecionada")
         if (uri != null) {
             binding.imagePerfilLoja.setImageURI(uri)
             uriImagemSelecionada = uri
@@ -62,6 +68,7 @@ class DadosLojaActivity : AppCompatActivity() {
         inicializarViews()
         inicializarListeners()
         inicializarObservables()
+       // inicializarBroadcast()
     }
 
     private fun solicitarPermissoes() {
@@ -108,8 +115,36 @@ class DadosLojaActivity : AppCompatActivity() {
         }
     }
 
+    private fun inicializarViews() {//ok
+        inicializarToolbar()
+        inicializarSpinner()
+        inicializarConfiguracoesGaleria()
+        inicializarBroadcast()
+    }
+
+    private fun inicializarBroadcast() {
+        //direto na activity
+        val wifiService = getSystemService( WifiManager::class.java )
+        if ( wifiService.isWifiEnabled ){
+            //poderia ser snaclBar
+            exibirMensagem( "Você está sem conexao wifi :(")
+            Log.i("broadcast_android", "Você está sem conexao wifi :(")
+        }else {
+            Log.i("broadcast_android", "Você está conectado :)")
+        }
+        //chama a classe
+        conexaoWifiReceiver = ConexaoWifiReceiver()
+        //com Broadcast
+        IntentFilter().apply {
+            addAction(WifiManager.WIFI_STATE_CHANGED_ACTION)
+        }.also {intentFilter ->
+            //configura broadcast
+            registerReceiver( conexaoWifiReceiver, intentFilter)
+        }
+    }
+
     private fun inicializarObservables() {
-        lojaViewModel.validacao.observe(this) { sucesso ->
+        lojaViewModel.validacao.observe(this) { sucesso -> //true
             if (!sucesso) {
                 exibirMensagem("Preencha todos os campos para prosseguir")
             }
@@ -145,7 +180,7 @@ class DadosLojaActivity : AppCompatActivity() {
                 editCnpj.clearFocus()
                 editTelefoneContatoLoja.clearFocus()
                 editEspecialidade.clearFocus()
-
+                //exibirMensagem("imagem: $uriImagemSelecionada")
                 if (uriImagemSelecionada != null) {
                     lojaViewModel.cadastrarLoja(
                         Loja(
@@ -154,8 +189,9 @@ class DadosLojaActivity : AppCompatActivity() {
                             cnpj = editCnpj.text.toString(),
                             categoria = 1,//configurar spinner depois
                             especialidade = editEspecialidade.text.toString(),
-                            imagemPerfil = "",
-                            imagemCapa = ""
+                            imagemPerfil = "https://www.google.com/",  // "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxpGO4QNGu1swn2ju5FEum-0-Hcak1iDLqMfQjFBe3l7gIX8zPaKIBTve1JlJH3JR-AqE&usqp=CAU",
+                            imagemCapa = "https://www.google.com/"
+                            //"https://tekimobile.com/wp-content/uploads/2019/04/capa-para-facebook-gatinho.jpg"
                         ), uriImagemSelecionada!!
                     )
                 }else{
@@ -163,13 +199,6 @@ class DadosLojaActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    private fun inicializarViews() {
-        inicializarToolbar()
-        inicializarSpinner()
-        inicializarConfiguracoesGaleria()
-
     }
 
     private fun inicializarConfiguracoesGaleria() {
@@ -207,5 +236,9 @@ class DadosLojaActivity : AppCompatActivity() {
             title = "Dados da Loja"
             setDisplayHomeAsUpEnabled(true)
         }
+    }
+    override fun onDestroy() {
+        unregisterReceiver( conexaoWifiReceiver )
+        super.onDestroy()
     }
 }
