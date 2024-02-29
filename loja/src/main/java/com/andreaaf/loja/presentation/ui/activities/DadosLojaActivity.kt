@@ -9,22 +9,27 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import com.andreaaf.appifood.domain.model.Loja
+import com.andreaaf.core.InternetConnectivity
+import com.andreaaf.core.InternetConnectivityObserver
 import com.andreaaf.core.esconderTeclado
 import com.andreaaf.core.exibirMensagem
 import com.andreaaf.loja.broadcasts.ConexaoWifiReceiver
 import com.andreaaf.loja.databinding.ActivityDadosLojaBinding
 import com.andreaaf.loja.presentation.ui.viewmodel.LojaViewModel
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DadosLojaActivity : AppCompatActivity() {
+class DadosLojaActivity : AppCompatActivity(), InternetConnectivity {
 
     private val binding by lazy {
         ActivityDadosLojaBinding.inflate(layoutInflater)
@@ -64,11 +69,20 @@ class DadosLojaActivity : AppCompatActivity() {
     }
 
     private fun inicializar() {
+        inicializarInternetConnectivityObserver()
         solicitarPermissoes()
         inicializarViews()
         inicializarListeners()
         inicializarObservables()
        // inicializarBroadcast()
+    }
+
+    private fun inicializarInternetConnectivityObserver() {
+        //tem que inicializar a parte
+        InternetConnectivityObserver
+            .instance(this)
+            .setCallback(this)
+            .build()
     }
 
     private fun solicitarPermissoes() {
@@ -119,7 +133,7 @@ class DadosLojaActivity : AppCompatActivity() {
         inicializarToolbar()
         inicializarSpinner()
         inicializarConfiguracoesGaleria()
-        inicializarBroadcast()
+        //inicializarBroadcast()
     }
 
     private fun inicializarBroadcast() {
@@ -240,5 +254,20 @@ class DadosLojaActivity : AppCompatActivity() {
     override fun onDestroy() {
         unregisterReceiver( conexaoWifiReceiver )
         super.onDestroy()
+    }
+
+    override fun onConnected() {
+        Snackbar.make(binding.root, "Conectado", Snackbar.LENGTH_SHORT )
+            .setAction("Close"){
+                fun onClick(view: View?){}
+            }
+           // .setActionTextColor(resources.getColor(android.R.color.holo_red_light))
+            .show()
+
+       // Toast.makeText(this, "Conectado à Internet", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onDisconnected() {
+        Toast.makeText(this, "Sem conexão com Internet", Toast.LENGTH_SHORT).show()
     }
 }
