@@ -62,12 +62,11 @@ class LojaUseCase@Inject constructor(
 
     }
 
-    suspend fun cadastrarLoja( loja: Loja, uri: Uri, retornoRequisicao: (UIStatus)-> Unit ) : Boolean {
-        return try {
+    suspend fun cadastrarLoja( loja: Loja, uri: Uri, retornoRequisicao: (UIStatus<String>)-> Unit){
+        try {
             iLojaRepository.cadastrar(loja, uri, retornoRequisicao)
         } catch (e: Exception) {
             e.printStackTrace()
-            false
         }
     }
 }

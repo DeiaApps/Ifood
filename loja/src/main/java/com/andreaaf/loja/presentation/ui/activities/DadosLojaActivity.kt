@@ -165,14 +165,14 @@ class DadosLojaActivity : AppCompatActivity(), InternetConnectivity {
             }
         }
 
-        lojaViewModel.sucesso.observe(this) { sucessoCadastro ->
+       /* lojaViewModel.sucesso.observe(this) { sucessoCadastro ->
             if (sucessoCadastro) {
                 navegarParaTelaInicial()
                 exibirMensagem("Sucesso ao cadastrar Loja")
             } else {
                 exibirMensagem("Erro ao cadastrar Loja")
             }
-        }
+        }*/
     }
 
     fun navegarParaTelaInicial() {
@@ -205,16 +205,13 @@ class DadosLojaActivity : AppCompatActivity(), InternetConnectivity {
                             categoria = 1,//configurar spinner depois
                             especialidade = editEspecialidade.text.toString(),
                             imagemPerfil = "https://www.google.com/",  // "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxpGO4QNGu1swn2ju5FEum-0-Hcak1iDLqMfQjFBe3l7gIX8zPaKIBTve1JlJH3JR-AqE&usqp=CAU",
-                            imagemCapa = "https://www.google.com/"
-                            //"https://tekimobile.com/wp-content/uploads/2019/04/capa-para-facebook-gatinho.jpg"
+                            imagemCapa = "https://www.google.com/"    //"https://tekimobile.com/wp-content/uploads/2019/04/capa-para-facebook-gatinho.jpg"
                         ), uriImagemSelecionada!!
                     ){uiStatus ->
                         when( uiStatus ){
-                            is UIStatus.Sucesso -> Log.i("sucesso",
-                                "Sucesso Sealed status: ${uiStatus.status} lista: ${uiStatus.lista}")
-                            // println("Sucesso Sealed status: ${uiStatus.status} lista: ${uiStatus.lista}")
-                            is UIStatus.Erro -> Log.i("erro","Erro Sealed status: ${uiStatus.status}")
-                            // println("Erro Sealed status: ${uiStatus.status}")
+                            is UIStatus.Sucesso -> exibirMensagem("${uiStatus.dados}")
+                            //is UIStatus.Sucesso -> println("Sucesso Sealed status: ${uiStatus.status} lista: ${uiStatus.lista}")
+                            is UIStatus.Erro -> exibirMensagem("Erro Sealed status: ${uiStatus.mensagemErro}")
                         }
                     }
                 }else{

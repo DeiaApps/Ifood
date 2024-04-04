@@ -26,17 +26,15 @@ class LojaViewModel @Inject constructor(
     val sucesso: LiveData<Boolean>
         get() = _sucesso
 
-    fun cadastrarLoja( loja: Loja, uri: Uri, retornoRequisicao: (UIStatus)-> Unit ){
+    fun cadastrarLoja( loja: Loja, uri: Uri, retornoRequisicao: (UIStatus<String>)-> Unit ){
 
         val resultado = lojaUseCase.validarDadosLojas( loja )
         _resultadoValidacao.value = resultado
         Log.i("cadastro_loja", "resultado: $resultado")
         if ( resultado ){
             viewModelScope.launch {
-                val retorno = lojaUseCase.cadastrarLoja( loja, uri, retornoRequisicao )
-                _sucesso.postValue( retorno )
+                lojaUseCase.cadastrarLoja( loja, uri, retornoRequisicao )
             }
         }
-
     }
 }

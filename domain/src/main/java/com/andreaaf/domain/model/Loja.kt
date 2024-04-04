@@ -6,6 +6,6 @@ data class Loja(
     val cnpj: String,
     val categoria: Int,
     val especialidade: String,
-    val imagemPerfil: String,
+    var imagemPerfil: String,
     val imagemCapa: String,
 )

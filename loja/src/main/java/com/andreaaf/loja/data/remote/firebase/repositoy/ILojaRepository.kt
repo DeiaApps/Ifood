@@ -5,6 +5,6 @@ import com.andreaaf.appifood.domain.model.Loja
 import com.andreaaf.core.UIStatus
 
 interface ILojaRepository {
-    suspend fun cadastrar( loja: Loja, uri: Uri, retornoRequisicao: (UIStatus)-> Unit) : Boolean
+    suspend fun cadastrar( loja: Loja, uri: Uri, retornoRequisicao: (UIStatus<String>)-> Unit)
 }
 
