@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.andreaaf.appifood.domain.model.Loja
+import com.andreaaf.core.UIStatus
 import com.andreaaf.loja.domain.usecase.LojaUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -25,14 +26,14 @@ class LojaViewModel @Inject constructor(
     val sucesso: LiveData<Boolean>
         get() = _sucesso
 
-    fun cadastrarLoja( loja: Loja, uri: Uri){
+    fun cadastrarLoja( loja: Loja, uri: Uri, retornoRequisicao: (UIStatus)-> Unit ){
 
         val resultado = lojaUseCase.validarDadosLojas( loja )
         _resultadoValidacao.value = resultado
         Log.i("cadastro_loja", "resultado: $resultado")
         if ( resultado ){
             viewModelScope.launch {
-                val retorno = lojaUseCase.cadastrarLoja( loja, uri )
+                val retorno = lojaUseCase.cadastrarLoja( loja, uri, retornoRequisicao )
                 _sucesso.postValue( retorno )
             }
         }

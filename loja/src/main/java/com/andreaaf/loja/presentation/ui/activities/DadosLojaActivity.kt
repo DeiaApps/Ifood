@@ -18,6 +18,7 @@ import androidx.core.content.ContextCompat
 import com.andreaaf.appifood.domain.model.Loja
 import com.andreaaf.core.InternetConnectivity
 import com.andreaaf.core.InternetConnectivityObserver
+import com.andreaaf.core.UIStatus
 import com.andreaaf.core.esconderTeclado
 import com.andreaaf.core.exibirMensagem
 import com.andreaaf.loja.broadcasts.ConexaoWifiReceiver
@@ -207,7 +208,15 @@ class DadosLojaActivity : AppCompatActivity(), InternetConnectivity {
                             imagemCapa = "https://www.google.com/"
                             //"https://tekimobile.com/wp-content/uploads/2019/04/capa-para-facebook-gatinho.jpg"
                         ), uriImagemSelecionada!!
-                    )
+                    ){uiStatus ->
+                        when( uiStatus ){
+                            is UIStatus.Sucesso -> Log.i("sucesso",
+                                "Sucesso Sealed status: ${uiStatus.status} lista: ${uiStatus.lista}")
+                            // println("Sucesso Sealed status: ${uiStatus.status} lista: ${uiStatus.lista}")
+                            is UIStatus.Erro -> Log.i("erro","Erro Sealed status: ${uiStatus.status}")
+                            // println("Erro Sealed status: ${uiStatus.status}")
+                        }
+                    }
                 }else{
                     exibirMensagem("Selecione uma imagem de perfil primeiro")
                 }

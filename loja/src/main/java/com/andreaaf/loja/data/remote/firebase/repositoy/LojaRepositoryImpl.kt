@@ -2,6 +2,7 @@ package com.andreaaf.loja.data.remote.firebase.repositoy
 
 import android.net.Uri
 import com.andreaaf.appifood.domain.model.Loja
+import com.andreaaf.core.UIStatus
 import com.andreaaf.loja.utils.FirebaseStorageConstants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -16,12 +17,12 @@ class LojaRepositoryImpl @Inject constructor(
     private val storage: FirebaseStorage
 ) : ILojaRepository {
 
-    override suspend fun cadastrar(loja: Loja, uri: Uri): Boolean {
-        uploadImagem(uri)
+    override suspend fun cadastrar(loja: Loja, uri: Uri, retornoRequisicao: (UIStatus)-> Unit): Boolean {
+        uploadImagem(uri, retornoRequisicao)
         return true
     }
 
-    suspend fun uploadImagem(uri: Uri): Boolean {
+    suspend fun uploadImagem(uri: Uri, retornoRequisicao: (UIStatus)-> Unit): Boolean {
         withContext( Dispatchers.IO){
             /*
             perfil
@@ -37,8 +38,12 @@ class LojaRepositoryImpl @Inject constructor(
                     .child( nomeFoto )
                     .putFile( uri )
                     //.downloadUrl
-                    .addOnSuccessListener {uriImagem -> //task ->
-
+                    .addOnSuccessListener {task -> //uriImagem ->
+                        val statusSucesso = UIStatus.Sucesso(true, listOf("andréa", "marco"))
+                        retornoRequisicao.invoke(statusSucesso)
+                    }.addOnFailureListener {
+                        val statusErro = UIStatus.Erro(false)
+                        retornoRequisicao.invoke(statusErro)
                     }
             }
         }

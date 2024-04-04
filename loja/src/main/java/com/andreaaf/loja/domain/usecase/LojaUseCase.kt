@@ -2,6 +2,7 @@ package com.andreaaf.loja.domain.usecase
 
 import android.net.Uri
 import com.andreaaf.appifood.domain.model.Loja
+import com.andreaaf.core.UIStatus
 import com.andreaaf.loja.data.remote.firebase.repositoy.ILojaRepository
 import com.wajahatkarim3.easyvalidation.core.view_ktx.validator
 import javax.inject.Inject
@@ -61,9 +62,9 @@ class LojaUseCase@Inject constructor(
 
     }
 
-    suspend fun cadastrarLoja( loja: Loja, uri: Uri ) : Boolean {
+    suspend fun cadastrarLoja( loja: Loja, uri: Uri, retornoRequisicao: (UIStatus)-> Unit ) : Boolean {
         return try {
-            iLojaRepository.cadastrar(loja, uri)
+            iLojaRepository.cadastrar(loja, uri, retornoRequisicao)
         } catch (e: Exception) {
             e.printStackTrace()
             false
